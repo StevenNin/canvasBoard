@@ -9,9 +9,24 @@
 <body>
         <canvas id="xxx" width=300 height=300></canvas>
         <div class="actions" id="actions">
-            <button id="eraser">橡皮</button>
-            <button id="brush">画笔</button>
+
+            <svg id="pen" class="active icon" >
+                <use xlink:href="#icon-pen"></use>
+            </svg>
+            <svg id="eraser" class="icon" >
+                <use xlink:href="#icon-xiangpi"></use>
+            </svg>
+            
+            <!-- <button id="eraser">橡皮</button>
+            <button id="brush">画笔</button> -->
         </div>
+
+        <ol class="colors">
+            <li id="red" class="red"></li>
+            <li id="green" class="green"></li>
+            <li id="blue" class="blue"></li>
+        </ol>
         <script src="main.js"></script>
+        <script src="./icon/iconfont.js"></script>
 </body>
 </html>
