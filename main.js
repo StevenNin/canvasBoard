@@ -1,6 +1,6 @@
 var yyy = document.getElementById('xxx') ;
 var context = yyy.getContext('2d');
-
+var lineWidth  = 5
 autoSetCanvasSize(yyy)
 
 listenToMouse(yyy)
@@ -17,11 +17,24 @@ pen.onclick = function(){
     eraser.classList.remove('active')
     // actions.className = 'actions'
 }
+clear.onclick =()=>{
+    context.clearRect(0,0,yyy.width,yyy.height)
+}
 
+download.onclick =()=>{
+    var url = yyy.toDataURL('image/png')
+    var a  = document.createElement('a')
+    document.body.appendChild(a)
+    a.href = url
+    a.download = 'MyPainting'
+    a.target = '_blank'
+    a.click()
+}
 green.onclick =()=>{
     context.fillStyle = 'green'
     context.strokeStyle = 'green'
     green.classList.add('active')
+    black.classList.remove('active')
     red.classList.remove('active')
     blue.classList.remove('active')
 
@@ -29,7 +42,7 @@ green.onclick =()=>{
 red.onclick =()=>{
     context.fillStyle = 'red'
     context.strokeStyle = 'red'
-
+    black.classList.remove('active')
     green.classList.remove('active')
     red.classList.add('active')
     blue.classList.remove('active')
@@ -37,10 +50,26 @@ red.onclick =()=>{
 blue.onclick =()=>{
     context.fillStyle = 'blue'
     context.strokeStyle = 'blue'
-
+    black.classList.remove('active')
     green.classList.remove('active')
     red.classList.remove('active')
     blue.classList.add('active')
+}
+black.onclick =()=>{
+    context.fillStyle = 'black'
+    context.strokeStyle = 'blue'
+    blue.classList.remove('active')
+    green.classList.remove('active')
+    red.classList.remove('active')
+    black.classList.add('active')
+}
+
+thin.onclick = ()=>{
+    lineWidth =  5;
+}
+
+thick.onclick = ()=>{
+    lineWidth =  10;
 }
 
 function autoSetCanvasSize(canvas){
@@ -71,7 +100,7 @@ function drawLine(x1,y1,x2,y2){
     context.beginPath();
     // context.strokeStyle = 'black'
     context.moveTo(x1,y1)
-    context.lineWidth = 5
+    context.lineWidth = lineWidth
     context.lineTo(x2,y2)
     context.stroke()
     context.closePath()
@@ -107,7 +136,7 @@ function listenToMouse(canvas){
             var y = aaa.touches[0].clientY
 
             console.log(x)
-            if(!using){retuen}
+            if(!using){return}
 
             if(eraserEnabled){
                 context.clearRect(x-5,y-5,10,10)
@@ -143,7 +172,7 @@ function listenToMouse(canvas){
             var y = aaa.clientY
 
             console.log(x)
-            if(!using){retuen}
+            if(!using){return}
 
             if(eraserEnabled){
                 context.clearRect(x-5,y-5,10,10)

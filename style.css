@@ -10,11 +10,11 @@ ul,ol{
    fill: currentColor;
    overflow: hidden;
 }
-/* 
-#x{
-    background: green;
+ 
+#xxx{
+    background: white;
     display: block;
-  } */
+  } 
   
   body{
     margin: 0px;
@@ -64,7 +64,30 @@ ul,ol{
   .colors>li.blue{
     background-color: blue;
   }
+  .colors>li.black{
+    background-color: black;
+  }
   .colors>li.active{
     transform: scale(1.2);
     transition: 0.4s;
+  }
+
+  .sizes{
+    position: fixed;
+    right: 10px;
+    top: 50px;
+  }
+
+  .sizes >li{
+    margin: 20px 0;
+  }
+  .sizes >.thin{
+    height: 0;
+    width: 20px;
+    border-top: 3px solid black;
+  }
+  .sizes >.thick{
+    height: 0;
+    width: 20px;
+    border-top: 10px solid black;
   }
